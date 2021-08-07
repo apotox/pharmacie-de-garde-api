@@ -37,15 +37,9 @@ app.get("/api/:id/pharmacies", async (req, res) =>{
       arr.push(item);
     });
 
-    return res.json({
-      success: true,
-      data: arr,
-    });
+    return res.json(arr);
   } else {
-    return res.json({
-      success: false,
-      data: {},
-    });
+    return res.json([]);
   }
 });
 
@@ -79,15 +73,9 @@ app.get("/api/:id/pharmacies/today", async (req, res) =>{
       arr.push(item);
     });
 
-    return res.json({
-      success: true,
-      data: arr,
-    });
+    return res.json(arr);
   } else {
-    return res.json({
-      success: false,
-      data: {},
-    });
+    return res.json([]);
   }
 });
 
