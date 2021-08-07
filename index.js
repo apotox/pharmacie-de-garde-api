@@ -3,6 +3,7 @@ const admin = require("firebase-admin");
 
 const express = require("express");
 const {getServiceAccount} = require("./helpers");
+const {validateBody} = require("./middlewares");
 const app = express();
 
 
@@ -38,17 +39,13 @@ app.get("/api/:id/pharmacies", async (req, res) =>{
   }
 });
 
-app.post("/api/:id/pharmacies", async (req, res) => {
+app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
   const id = req.params.id;
-  const body = req.body;
-
-  if (!id || !body) {
-    return res.status(400).json({success: false});
-  }
+  const {payload} = res.locals;
 
   const ref = admin.database().ref(`cities/${id}`);
 
-  await ref.set(body);
+  await ref.set(payload);
 
   return res.json({
     success: true,
