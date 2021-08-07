@@ -1,13 +1,15 @@
 
 const admin = require("firebase-admin");
-admin.initializeApp({
-  credential: admin.credential.cert(getServiceAccount()),
-  databaseURL: process.env.DATABASE_URL,
-});
+
 const express = require("express");
 const {getServiceAccount} = require("./helpers");
 const app = express();
 
+
+admin.initializeApp({
+  credential: admin.credential.cert(getServiceAccount()),
+  databaseURL: process.env.DATABASE_URL,
+});
 
 const PORT = process.env.PORT || 5000;
 
@@ -53,7 +55,11 @@ app.post("/api/:id/pharmacies", async (req, res) => {
   });
 });
 
-
+app.get("*", (req, res)=>{
+  res.status(200).json({
+    message: "welcome to pharmacie-de-garde api!",
+  });
+});
 app.listen(PORT, ()=>{
   console.log("start server api");
 });
