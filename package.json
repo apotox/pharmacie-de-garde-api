@@ -1,6 +1,6 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
+  "name": "pharmacie-de-garde",
+  "description": "pharmacie-de-garde api",
   "scripts": {
     "lint": "eslint .",
     "start": "node index.js",
@@ -20,6 +20,10 @@
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
     "firebase-functions-test": "^0.2.0"
+  },
+  "author": {
+    "name": "safi eddine bouhentala",
+    "email": "saphidev@gmail.com"
   },
   "private": true
 }
