@@ -1,10 +1,17 @@
 
 const admin = require("firebase-admin");
-
+const moment = require("moment-timezone");
 const express = require("express");
 const {getServiceAccount} = require("./helpers");
 const {validateBody} = require("./middlewares");
+const {MORNING_HOUR} = require("./constants");
 const app = express();
+app.use(express.json());
+
+if (process.env.NODE_ENV != "production") {
+  console.log("load env variables..");
+  require("dotenv").config();
+}
 
 
 admin.initializeApp({
@@ -14,22 +21,25 @@ admin.initializeApp({
 
 const PORT = process.env.PORT || 5000;
 
-
 app.get("/api/:id/pharmacies", async (req, res) =>{
   const id = req.params.id;
-
   if (!id) {
     return res.status(400).json({success: false});
   }
 
-  const ref = admin.database().ref(`cities/${id}`);
+  const ref = admin.database().ref(`cities/c-${id}`);
 
-  const doc = await ref.get();
+  const snap = await ref.get();
 
-  if (doc.exists) {
+  if (snap.exists) {
+    const arr = [];
+    snap.forEach((item)=> {
+      arr.push(item);
+    });
+
     return res.json({
       success: true,
-      data: doc.toJSON(),
+      data: arr,
     });
   } else {
     return res.json({
@@ -39,11 +49,54 @@ app.get("/api/:id/pharmacies", async (req, res) =>{
   }
 });
 
+app.get("/api/:id/pharmacies/today", async (req, res) =>{
+  const id = req.params.id;
+
+  if (!id) {
+    return res.status(400).json({
+      success: false,
+      message: "missing id",
+    });
+  }
+
+  let dayStr = null;
+  const today = moment().tz("Africa/Algiers");
+
+
+  if (today.hour() < MORNING_HOUR) {
+    dayStr = today.add(-1, "day").format("yyyy-MM-DD");
+  } else {
+    dayStr = today.format("yyyy-MM-DD");
+  }
+
+  const ref = admin.database().ref(`cities/c-${id}/${dayStr}`);
+
+  const snap = await ref.get();
+
+  if (snap.exists) {
+    const arr = [];
+    snap.forEach((item)=> {
+      arr.push(item);
+    });
+
+    return res.json({
+      success: true,
+      data: arr,
+    });
+  } else {
+    return res.json({
+      success: false,
+      data: {},
+    });
+  }
+});
+
+
 app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
   const id = req.params.id;
   const {payload} = res.locals;
 
-  const ref = admin.database().ref(`cities/${id}`);
+  const ref = admin.database().ref(`cities/c-${id}`);
 
   await ref.set(payload);
 
