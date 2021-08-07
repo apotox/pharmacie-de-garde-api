@@ -4,6 +4,7 @@ const getServiceAccount=()=>{
     return JSON.parse(buf);
   } catch (err) {
     console.warn("getServiceAccount", err.message, err.stack);
+    return null;
   }
 };
 
