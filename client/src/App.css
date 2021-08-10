@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -35,4 +34,62 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-form{
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+button {
+  margin-top: 0.4rem;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+.side-bar-left{
+  min-width: 80px;
+  max-width: 200px;
+  border-right: 1px solid #ccc;
+  margin-right: 1rem;
+  padding-right: 1rem;
+}
+
+.side-bar-left ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-pharmacies{
+  flex-grow: 1;
+}
+
+.connected-div{
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  align-items: center;
+    justify-content: center;
+}
+.connected-div span{
+  margin: 0.2rem;
+}
+
+.connected-div button {
+  padding: 2px;
+}
+
+.alert {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
 }

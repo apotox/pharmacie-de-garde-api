@@ -1,20 +1,25 @@
+
 import React from 'react'
-import logo from '../logo.svg';
+import { Button } from 'reactstrap'
+import firebaseClient from '../helpers/firebase-client'
+import useFirebase from '../hooks/useFirebase'
 function Header() {
+  const [connected,user] = useFirebase()
+
+  const out=()=>{
+    firebaseClient.auth().signOut()
+  }
     return (
-                <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <header className="App-header">
+       
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <code>Pharmacie de</code> Garde.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+        {connected && user && <div className="connected-div">
+          <span>you are connected as {user.email}</span><Button size="sm" outline onClick={out}>out</Button>
+        </div>}
+       
       </header>
     )
 }

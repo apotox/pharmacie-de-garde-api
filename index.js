@@ -2,11 +2,17 @@
 const admin = require("firebase-admin");
 const moment = require("moment-timezone");
 const express = require("express");
+const cors = require("cors");
 const {getServiceAccount} = require("./helpers");
 const {validateBody} = require("./middlewares");
 const {MORNING_HOUR} = require("./constants");
+
+/**
+ * EXPRESS APP
+ */
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 if (process.env.NODE_ENV != "production") {
   console.log("load env variables..");
