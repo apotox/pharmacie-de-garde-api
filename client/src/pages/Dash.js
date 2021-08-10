@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
+import moment from 'moment';
+import React, { useEffect, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Container } from 'reactstrap'
-import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+import {Button
 } from 'reactstrap';
+import Pharmacy from '../components/Pharmacy';
 import { GET_GARDES } from '../redux/actions/app.actions';
 
 function Dash() {
 
-
-
+    const { program } = useSelector(state => state.app)
     const dispatch = useDispatch()
 
     const load = () => {
@@ -21,6 +21,14 @@ function Dash() {
         load()
     }, [])
 
+    const monthDays = useMemo(()=>{
+        return Array(moment().daysInMonth()).fill(0).map((_,index)=>{
+            
+            return moment().startOf('month').add(index,'day').format('yyyy/MM/DD')
+        })
+        
+
+    },[])
 
     return (
         <Container>
@@ -32,15 +40,15 @@ function Dash() {
                     </ul>
                 </div>
                 <div className="list-pharmacies">
-                    <Card>
-                        <CardBody>
-                            <CardText>2021/08/19</CardText>
-                            <CardTitle tag="h5">Bitam</CardTitle>
-                            <CardSubtitle tag="h6" className="mb-2 text-muted">07:00 - 19:00</CardSubtitle>
 
-                            <Button>Delete</Button> <Button>GPS</Button>
-                        </CardBody>
-                    </Card>
+                    {
+                        monthDays.map(day=> <div className='day'>
+
+                        </div>)
+                    }
+                    {/* {
+                        program.map((pharmacy, index) => <Pharmacy pharmacy={pharmacy} key={`pharmacy-${index}`}/>)
+                    } */}
                 </div>
             </div>
         </Container>

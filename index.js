@@ -1,9 +1,9 @@
 
-const admin = require("firebase-admin");
+
 const moment = require("moment-timezone");
 const express = require("express");
 const cors = require("cors");
-const {getServiceAccount} = require("./helpers");
+const {firebaseAdmin} = require("./helpers");
 const {validateBody} = require("./middlewares");
 const {MORNING_HOUR} = require("./constants");
 
@@ -20,36 +20,36 @@ if (process.env.NODE_ENV != "production") {
 }
 
 
-admin.initializeApp({
-  credential: admin.credential.cert(getServiceAccount()),
-  databaseURL: process.env.DATABASE_URL,
-});
-
 const PORT = process.env.PORT || 5000;
 
-app.get("/api/:id/pharmacies", async (req, res) =>{
+app.get("/api/:id/pharmacies", async (req, res) => {
   const id = req.params.id;
   if (!id) {
     return res.status(400).json({success: false});
   }
 
-  const ref = admin.database().ref(`cities/c-${id}`);
+  const ref = firebaseAdmin().database().ref(`cities/c-${id}`);
 
   const snap = await ref.get();
 
   if (snap.exists) {
     const arr = [];
-    snap.forEach((item)=> {
-      arr.push(item);
+
+    snap.forEach((item) => {
+      const payload = [...item.val()]
+          .map((ele) => Object.assign(ele, {date: item.key}));
+
+      arr.push(payload);
     });
 
+    console.log(arr);
     return res.json(arr);
   } else {
     return res.json([]);
   }
 });
 
-app.get("/api/:id/pharmacies/today", async (req, res) =>{
+app.get("/api/:id/pharmacies/today", async (req, res) => {
   const id = req.params.id;
 
   if (!id) {
@@ -69,13 +69,14 @@ app.get("/api/:id/pharmacies/today", async (req, res) =>{
     dayStr = today.format("yyyy-MM-DD");
   }
 
-  const ref = admin.database().ref(`cities/c-${id}/${dayStr}`);
+  const ref = firebaseAdmin().database().ref(`cities/c-${id}/${dayStr}`);
 
   const snap = await ref.get();
 
   if (snap.exists) {
     const arr = [];
-    snap.forEach((item)=> {
+    snap.forEach((item, key) => {
+      item.key = key;
       arr.push(item);
     });
 
@@ -90,7 +91,7 @@ app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
   const id = req.params.id;
   const {payload} = res.locals;
 
-  const ref = admin.database().ref(`cities/c-${id}`);
+  const ref = firebaseAdmin().database().ref(`cities/c-${id}`);
 
   await ref.set(payload);
 
@@ -99,11 +100,11 @@ app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
   });
 });
 
-app.get("*", (req, res)=>{
+app.get("*", (req, res) => {
   res.status(200).json({
     message: "welcome to pharmacie-de-garde api!",
   });
 });
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log("start server api");
 });
