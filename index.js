@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 if (process.env.NODE_ENV != "production") {
-  console.log("load env variables..");
+  console.log("local: load env variables..");
   require("dotenv").config();
 }
 
