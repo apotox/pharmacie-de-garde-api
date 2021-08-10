@@ -41,8 +41,6 @@ app.get("/api/:id/pharmacies", async (req, res) => {
 
       arr.push(payload);
     });
-
-    console.log(arr);
     return res.json(arr);
   } else {
     return res.json([]);
