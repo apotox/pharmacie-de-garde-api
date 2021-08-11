@@ -23,7 +23,7 @@ if (process.env.NODE_ENV != "production") {
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/api/:id/pharmacies", async (req, res) => {
+app.get("/api/:id/gardes", async (req, res) => {
   const id = req.params.id;
   if (!id) {
     return res.status(400).json({success: false});
@@ -48,7 +48,7 @@ app.get("/api/:id/pharmacies", async (req, res) => {
   }
 });
 
-app.get("/api/:id/pharmacies/today", async (req, res) => {
+app.get("/api/:id/gardes/today", async (req, res) => {
   const id = req.params.id;
 
   if (!id) {
@@ -86,7 +86,7 @@ app.get("/api/:id/pharmacies/today", async (req, res) => {
 });
 
 
-app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
+app.post("/api/:id/gardes", validateBody, async (req, res) => {
   const id = req.params.id;
   const {payload} = res.locals;
 
