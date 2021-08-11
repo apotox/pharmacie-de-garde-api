@@ -38,6 +38,8 @@ jobs:
           yarn build --if-present
       - name: update gitignore
         run: |
+          git config --local user.name "apotox"
+          git config --local user.email "apotox@users.noreply.github.com"
           git add -f ./client/build
           git commit -m 'add build to git'
       - name: deploy to heroku
