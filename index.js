@@ -48,6 +48,31 @@ app.get("/api/:id/gardes", async (req, res) => {
   }
 });
 
+app.get("/api/:id/pharmacies", async (req, res) => {
+  const id = req.params.id;
+  // if (!id) {
+  //   return res.status(400).json({success: false});
+  // }
+
+  // const ref = firebaseAdmin().database().ref(`cities/c-${id}`);
+
+  // const snap = await ref.get();
+
+  // if (snap.exists) {
+  //   const arr = [];
+
+  //   snap.forEach((item) => {
+  //     const payload = [...item.val()]
+  //         .map((ele) => Object.assign(ele, {date: item.key}));
+
+  //     arr.push(payload);
+  //   });
+  return res.json([id]);
+  // } else {
+  //   return res.json([]);
+  // }
+});
+
 app.get("/api/:id/gardes/today", async (req, res) => {
   const id = req.params.id;
 
