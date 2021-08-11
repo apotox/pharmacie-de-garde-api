@@ -10,6 +10,7 @@ import {
 import Pharmacy from '../components/Pharmacy';
 import PharmacyInput from '../components/PharmacyInput';
 import { GET_GARDES } from '../redux/actions/app.actions';
+import { LOAD_CITIES } from '../redux/actions/city.actions';
 
 function Dash() {
 
@@ -19,7 +20,8 @@ function Dash() {
     const dispatch = useDispatch()
 
     const load = () => {
-        dispatch(GET_GARDES())
+        dispatch(LOAD_CITIES())
+        dispatch(GET_GARDES(cityId))
     }
 
     useEffect(() => {

@@ -18,6 +18,11 @@ export const SET_PHARMACIES=payload=>({
     payload,
 })
 
+export const SET_CITIES=payload=>({
+    type: 'SET_CITIES',
+    payload,
+})
+
 export const DO_LOGIN=({email,password})=>{
     return (dispatch)=>{
         firebaseClient.auth().signInWithEmailAndPassword(email,password)
@@ -33,7 +38,7 @@ export const GET_GARDES=(cityId)=>{
 
     return dispatch=>{
         ApiClient().then(async client=>{
-            const result = await client.get(`/${cityId}/pharmacies`)
+            const result = await client.get(`/${cityId}/gardes`)
             const days = result.data
             let pharmaciesGardes = []
             days.forEach((day,index) => {
@@ -49,11 +54,11 @@ export const GET_GARDES=(cityId)=>{
     }
 }
 
-export const GET_PHARMACIES=(payload)=>{
+export const GET_PHARMACIES=(cityId)=>{
 
     return dispatch=>{
         ApiClient().then(async client=>{
-            const result = await client.get(`/pharmacies`)
+            const result = await client.get(`/${cityId}/pharmacies`)
             dispatch(SET_PHARMACIES(result.data))
         })
         .catch(FAILED(dispatch))
