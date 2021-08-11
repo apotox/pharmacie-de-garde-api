@@ -36,7 +36,12 @@ jobs:
         run: |
           yarn install
           yarn build --if-present
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: update gitignore
+        run: |
+          git add -f build
+          git commit -m 'add build to git'
+      - name: deploy to heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "frozen-earth-99544"
