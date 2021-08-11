@@ -38,7 +38,7 @@ jobs:
           yarn build --if-present
       - name: update gitignore
         run: |
-          git add -f build
+          git add -f ./client/build
           git commit -m 'add build to git'
       - name: deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
