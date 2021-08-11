@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Container } from 'reactstrap';
 import { DO_LOGIN } from '../redux/actions/app.actions';
 
 function Login() {  

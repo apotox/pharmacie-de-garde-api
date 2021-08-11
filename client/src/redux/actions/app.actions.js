@@ -1,4 +1,4 @@
-import moment from "moment"
+
 import { ApiClient } from "../../helpers/axios-client"
 import firebaseClient from "../../helpers/firebase-client"
 import { SHOW_NOTIFICATION_TIMEOUT } from "./notification.actions"
@@ -13,6 +13,11 @@ export const SET_PROGRAM=payload=>({
     payload,
 })
 
+export const SET_PHARMACIES=payload=>({
+    type: 'SET_PHARMACIES',
+    payload,
+})
+
 export const DO_LOGIN=({email,password})=>{
     return (dispatch)=>{
         firebaseClient.auth().signInWithEmailAndPassword(email,password)
@@ -24,19 +29,13 @@ export const DO_LOGIN=({email,password})=>{
 }
 
 
-export const GET_GARDES=(payload)=>{
+export const GET_GARDES=(cityId)=>{
 
     return dispatch=>{
         ApiClient().then(async client=>{
-            const result = await client.get(`/118/pharmacies`)
-            console.log(result.data)
-
+            const result = await client.get(`/${cityId}/pharmacies`)
             const days = result.data
-
             let pharmaciesGardes = []
-
-            console.log('days',days)
-            
             days.forEach((day,index) => {
                 console.log(day)
                 pharmaciesGardes = [
@@ -44,11 +43,18 @@ export const GET_GARDES=(payload)=>{
                     ...day
                 ]
             } );
-
-
             dispatch(SET_PROGRAM(pharmaciesGardes))
+        })
+        .catch(FAILED(dispatch))
+    }
+}
 
+export const GET_PHARMACIES=(payload)=>{
 
+    return dispatch=>{
+        ApiClient().then(async client=>{
+            const result = await client.get(`/pharmacies`)
+            dispatch(SET_PHARMACIES(result.data))
         })
         .catch(FAILED(dispatch))
     }

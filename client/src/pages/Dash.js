@@ -8,11 +8,13 @@ import {
     Button
 } from 'reactstrap';
 import Pharmacy from '../components/Pharmacy';
+import PharmacyInput from '../components/PharmacyInput';
 import { GET_GARDES } from '../redux/actions/app.actions';
 
 function Dash() {
 
     const { program } = useSelector(state => state.app)
+    const [cityId,setCityId] = useState(118)
     const [openedDays, setOpenedDays] = useState({})
     const dispatch = useDispatch()
 
@@ -22,14 +24,13 @@ function Dash() {
 
     useEffect(() => {
         load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const monthDays = useMemo(() => {
         return Array(moment().daysInMonth()).fill(0).map((_, index) => {
             return moment().add(index, 'day').format('yyyy-MM-DD')
         })
-
-
     }, [])
 
     const toggleDayCards = (day) => {
@@ -65,6 +66,8 @@ function Dash() {
                                 {
                                     program.filter(p => p.date === day).map((pharmacy, index) => <Pharmacy pharmacy={pharmacy} key={`pharmacy-${index}`} />)
                                 }
+
+                                <PharmacyInput />
                                 </div>
 
                             </Collapse>

@@ -1,7 +1,3 @@
-
-
-
-import React from 'react'
 import { useState } from 'react'
 import firebaseClient from '../helpers/firebase-client'
 
@@ -11,8 +7,6 @@ function useFirebase() {
     const [connected, setConnected] = useState(false)
 
     firebaseClient.auth().onAuthStateChanged(resultUser => {
-        
-
         if (resultUser) {
             setConnected(true)
             setUser(resultUser)
@@ -20,8 +14,6 @@ function useFirebase() {
             setConnected(false)
             setUser(null)
         }
-
-
     })
 
     return [connected, user]

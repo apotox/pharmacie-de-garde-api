@@ -126,3 +126,6 @@ button {
   flex-direction: row;
   flex-flow: row-reverse;
 }
+.autocomplete-container input{
+  
+}
