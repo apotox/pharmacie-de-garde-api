@@ -93,3 +93,36 @@ button {
   top: 1rem;
   right: 1rem;
 }
+.card {
+  margin-bottom: 0.6rem;
+  box-shadow: 2px 1px 1px 0px #ececec;
+}
+.card:hover {
+  box-shadow: 2px 2px 4px 0px #cfcfcf;
+}
+.day {
+  padding: .4rem;
+  border: 1px solid #ccc;
+  border-radius: .2rem;
+  margin-bottom: .4rem;
+}
+.day b {
+  padding: .4rem;
+  color: #464646;
+
+}
+.day:hover {
+  border-color: #61dafb;
+  cursor: pointer;
+}
+.cards-holder{
+  min-height: 120px;
+  margin-top: 0.4rem;
+}
+
+.tools {
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row-reverse;
+}

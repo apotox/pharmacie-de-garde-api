@@ -46,8 +46,6 @@ export const GET_GARDES=(payload)=>{
             } );
 
 
-            console.log(pharmaciesGardes)
-
             dispatch(SET_PROGRAM(pharmaciesGardes))
 
 

@@ -5,14 +5,12 @@ import {
 } from 'reactstrap';
 
 
-function Pharmacy({pharmacy,index}) {
+function Pharmacy({pharmacy}) {
     return (
-        <Card >
+        <Card onClick={e=> e.stopPropagation()} >
             <CardBody>
-                <CardText>2021/08/19</CardText>
                 <CardTitle tag="h5">{pharmacy.name}</CardTitle>
                 <CardSubtitle tag="h6" className="mb-2 text-muted">07:00 - 19:00</CardSubtitle>
-                <Button>Edit</Button>
             </CardBody>
         </Card>
     )
