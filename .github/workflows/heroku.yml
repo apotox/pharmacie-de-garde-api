@@ -26,8 +26,13 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
+      - name: set SHORT_SHA
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
       - name: builing the UI
         working-directory: ./client
+        env:
+          CI: false
+          REACT_APP_GITHUB_SHA: ${SHORT_SHA}
         run: |
           yarn install
           yarn build --if-present
