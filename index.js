@@ -2,6 +2,7 @@
 
 const moment = require("moment-timezone");
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const {firebaseAdmin} = require("./helpers");
 const {validateBody} = require("./middlewares");
@@ -97,6 +98,8 @@ app.post("/api/:id/pharmacies", validateBody, async (req, res) => {
     success: true,
   });
 });
+
+app.use("/", express.static(path.join(__dirname, "./client/build")));
 
 app.get("*", (req, res) => {
   res.status(200).json({
