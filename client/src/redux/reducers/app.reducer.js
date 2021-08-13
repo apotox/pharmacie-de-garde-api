@@ -3,7 +3,8 @@ const initialState = {
     version: process.env.REACT_APP_GITHUB_SHA || 'local',
     program: [],
     pharmacies: [],
-    cities: []
+    cities: [],
+    selectedCityId: 118,
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -12,6 +13,9 @@ export default function (state = initialState, { type, payload }) {
 
         case "SET_APP":
             return { ...state, ...payload }
+    
+            case "SET_SELECTED_CITYID":
+                return { ...state, selectedCityId: payload }
 
         case 'SET_PROGRAM':
             return {

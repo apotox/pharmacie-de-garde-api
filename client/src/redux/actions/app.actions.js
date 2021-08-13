@@ -8,6 +8,11 @@ export const SET_APP=(payload)=>({
     payload
 })
 
+export const SET_SELECTED_CITYID=payload=>({
+    type: 'SET_SELECTED_CITYID',
+    payload
+})
+
 export const SET_PROGRAM=payload=>({
     type: 'SET_PROGRAM',
     payload,
@@ -38,7 +43,7 @@ export const GET_GARDES=(cityId)=>{
 
     return dispatch=>{
         ApiClient().then(async client=>{
-            const result = await client.get(`/${cityId}/gardes`)
+            const result = await client.get(`/gardes/${cityId}`)
             const days = result.data
             let pharmaciesGardes = []
             days.forEach((day,index) => {
@@ -58,7 +63,7 @@ export const GET_PHARMACIES=(cityId)=>{
 
     return dispatch=>{
         ApiClient().then(async client=>{
-            const result = await client.get(`/${cityId}/pharmacies`)
+            const result = await client.get(`/pharmacies/${cityId}`)
             dispatch(SET_PHARMACIES(result.data))
         })
         .catch(FAILED(dispatch))
