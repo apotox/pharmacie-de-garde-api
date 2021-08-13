@@ -1,5 +1,6 @@
 const moment = require("moment-timezone");
 const {getPharmacyById, createPharmacy} = require("./api/pharmacy/controller");
+const {firebaseAdmin} = require("./helpers");
 
 /**
  * this function will validate the array item
@@ -107,8 +108,30 @@ const validateBody = async (req, res, next) => {
 };
 
 
+const verifyToken=async (req, res, next)=>{
+  const authorization = req.headers["authorization"] ||
+  req.headers["Authorization"];
+
+  if (!authorization || !authorization.split(" ")[1]) {
+    return res.status(401).json({success: false});
+  }
+
+  try {
+    const decoded = await firebaseAdmin().auth().verifyIdToken(authorization.split(" ")[1]);
+    res.locals.user = {
+      email: decoded.email,
+      uid: decoded.uid,
+      email_verified: decoded.email_verified,
+    };
+    return next();
+  } catch (error) {
+    return res.status(401).json({success: false, message: error.message});
+  }
+};
+
 module.exports = {
   validateBody,
+  verifyToken,
 };
 
 /**
