@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     "quotes": ["error", "double"],
     "valid-jsdoc": "off",
+    "max-len": ["error", {"code": 120}],
   },
   parserOptions: {
     "ecmaVersion": 2018,
