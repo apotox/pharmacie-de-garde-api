@@ -1,5 +1,6 @@
 const admin = require("firebase-admin");
 
+// load firebase service account from envirenment variable `SERVICE_ACCOUNT`
 const getServiceAccount=()=>{
   try {
     const buf = Buffer.from(process.env.SERVICE_ACCOUNT, "base64"); // Ta-da
@@ -10,6 +11,7 @@ const getServiceAccount=()=>{
   }
 };
 
+// get configured firebase admin
 const firebaseAdmin = ()=>{
   if (admin.apps.length == 0) {
     admin.initializeApp({
