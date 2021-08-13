@@ -8,8 +8,8 @@ function useFirebase() {
 
     firebaseClient.auth().onAuthStateChanged(resultUser => {
         if (resultUser) {
-            setConnected(true)
             setUser(resultUser)
+            setConnected(true)
         } else {
             setConnected(false)
             setUser(null)
