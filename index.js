@@ -43,5 +43,10 @@ app.get("*", (req, res) => {
 
 // start server
 app.listen(PORT, () => {
-  console.log("start the api server 🚀 by @saphidev , github.com/apotox");
+  console.table([{
+    "action": "start 🚀",
+    "port": PORT,
+    "author": "@saphidev",
+    "repo": "https://github.com/apotox",
+  }]);
 });
