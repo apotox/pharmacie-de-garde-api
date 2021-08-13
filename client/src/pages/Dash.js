@@ -3,31 +3,32 @@ import moment from 'moment';
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Container, Collapse, ButtonGroup } from 'reactstrap'
+import { Container, Collapse } from 'reactstrap'
 import {
     Button
 } from 'reactstrap';
 import Pharmacy from '../components/Pharmacy';
 import PharmacyInput from '../components/PharmacyInput';
-import { GET_GARDES } from '../redux/actions/app.actions';
+import SelectCity from '../components/SelectCity';
+import { GET_GARDES, GET_PHARMACIES } from '../redux/actions/app.actions';
 import { LOAD_CITIES } from '../redux/actions/city.actions';
 
 function Dash() {
 
-    const { program } = useSelector(state => state.app)
-    const [cityId,setCityId] = useState(118)
+    const { program,selectedCityId } = useSelector(state => state.app)
     const [openedDays, setOpenedDays] = useState({})
     const dispatch = useDispatch()
 
-    const load = () => {
-        dispatch(LOAD_CITIES())
-        dispatch(GET_GARDES(cityId))
-    }
-
     useEffect(() => {
-        load()
+        dispatch(LOAD_CITIES())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+        dispatch(GET_GARDES(selectedCityId))
+        dispatch(GET_PHARMACIES(selectedCityId))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedCityId])
 
     const monthDays = useMemo(() => {
         return Array(moment().daysInMonth()).fill(0).map((_, index) => {
@@ -54,16 +55,18 @@ function Dash() {
                 </div>
                 <div className="list-pharmacies">
 
+                    <SelectCity />
+
                     {
                         monthDays.map(day => <div className='day' onClick={() => toggleDayCards(day)}>
                             <b>{day}</b>
                             <Collapse isOpen={openedDays && openedDays[day]}>
-                                <div className='tools' onClick={e=>e.stopPropagation()}>
+                                {/* <div className='tools' onClick={e=>e.stopPropagation()}>
                                     <ButtonGroup size='sm'>
                                         <Button outline>add</Button>
                                         <Button outline>empty</Button>
                                     </ButtonGroup>
-                                </div>
+                                </div> */}
                                 <div className='cards-holder'>
                                 {
                                     program.filter(p => p.date === day).map((pharmacy, index) => <Pharmacy pharmacy={pharmacy} key={`pharmacy-${index}`} />)
