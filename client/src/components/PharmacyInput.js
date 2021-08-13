@@ -1,12 +1,14 @@
 import React from 'react'
-import Autocomplete from 'react-autocomplete';
 import {
     Card, CardText, CardBody,
     CardTitle, CardSubtitle, Input
 } from 'reactstrap';
-
+import AsyncSelect from 'react-select/async';
+import { useSelector } from 'react-redux';
 
 function PharmacyInput() {
+
+    const { pharmacies , selectedPharmacyId } = useSelector(state => state.app)
 
 
     return (
@@ -18,23 +20,19 @@ function PharmacyInput() {
                         flexDirection: "row"
                     }}>
                         <Input placeholder="pharmacy name" />
-                        <Autocomplete
 
-                            inputProps={{
-                                placeholder: "Search",
-                                className: 'form-control'
-                            }}
-                            renderItem={(item, isHighlighted) =>
-                                <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-                                    {item.label}
-                                </div>
-                            }
-                            items={[
-                                { label: 'apple' },
-                                { label: 'banana' },
-                                { label: 'pear' }
-                            ]}
-                        />
+
+
+                        {/* {pharmacies.length && <AsyncSelect
+                defaultValue={{
+                    value: selectedCityId,
+                    label: loadCityLabelById(selectedCityId)
+                }}
+                onChange={onSelectCity}
+                onInputChange={handleInputChange}
+                loadOptions={loadCities}
+                onMenuScrollToBottom={onscrollmenu} />} */}
+                        
                     </div>
                 </CardTitle>
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
