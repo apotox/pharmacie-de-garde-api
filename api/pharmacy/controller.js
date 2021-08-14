@@ -41,8 +41,30 @@ const createPharmacy=async (item)=>{
  * @returns [pharmacy]
  */
 const getAllCityPharmacies=async (req, res) => {
-  const id = req.params.id;
-  return res.json([id]);
+  const id = req.params.id; // city id
+  if (!id) {
+    return res.status(400).json({success: false});
+  }
+
+  const ref = firebaseAdmin()
+      .database()
+      .ref(`pharmacies/${id}`);
+
+  // retreive data
+  const snap = await ref.get();
+
+  if (snap.exists) {
+    const arr = [];
+    // make the response body array
+    snap.forEach((item) => {
+      const payload = Object.assign(item.val(), {key: item.key});
+
+      arr.push(payload);
+    });
+    return res.json(arr);
+  } else {
+    return res.json([]);
+  }
 };
 
 module.exports = {

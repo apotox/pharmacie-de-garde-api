@@ -78,7 +78,7 @@ const validateBody = async (req, res, next) => {
     return res.status(400).json({success: false});
   }
 
-  if (!Array.isArray(data.weekGarde) || data.weekGarde.length > 30) {
+  if (!Array.isArray(data.weekGarde) || data.weekGarde.length > 31) {
     return res.status(400).json({
       success: false,
       message: "body.weekGarde must be an array len <= 30",

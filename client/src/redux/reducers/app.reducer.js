@@ -5,6 +5,7 @@ const initialState = {
     pharmacies: [],
     cities: [],
     selectedCityId: 118,
+    gardesByDay: {}
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -22,6 +23,11 @@ export default function (state = initialState, { type, payload }) {
                 ...state,
                 program: payload,
             }
+            case 'SET_GARDES_BY_DAY':
+                return {
+                    ...state,
+                    gardesByDay: payload,
+                }
         case 'SET_PHARMACIES':
             return {
                 ...state,

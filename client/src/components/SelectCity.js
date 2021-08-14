@@ -4,6 +4,7 @@ import AsyncSelect from 'react-select/async';
 import { Container } from 'reactstrap'
 import { SET_SELECTED_CITYID } from '../redux/actions/app.actions';
 import { LOAD_CITIES } from '../redux/actions/city.actions'
+import LazyLoading from './LazyLoading';
 
 function SelectCity() {
 
@@ -15,6 +16,7 @@ function SelectCity() {
         dispatch(LOAD_CITIES())
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     const parseCity=(i)=>`${i.commune_name_ascii} · ${i.daira_name_ascii} · ${i.wilaya_name_ascii}`
 
@@ -49,10 +51,11 @@ function SelectCity() {
     const loadCityLabelById =(id)=>{
         return parseCity(cities.find(i=>i.id === id))
     }
+    
     return (
         <Container>
              <pre>search for "<b>{value}</b>"</pre>
-            {cities.length && <AsyncSelect
+            { cities.length ? <AsyncSelect
                 defaultValue={{
                     value: selectedCityId,
                     label: loadCityLabelById(selectedCityId)
@@ -60,7 +63,7 @@ function SelectCity() {
                 onChange={onSelectCity}
                 onInputChange={handleInputChange}
                 loadOptions={loadCities}
-                onMenuScrollToBottom={onscrollmenu} />}
+                onMenuScrollToBottom={onscrollmenu} /> : <LazyLoading lines={1} />}
         </Container>
     )
 }
