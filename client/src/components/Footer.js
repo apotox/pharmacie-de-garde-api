@@ -4,7 +4,9 @@ function Footer() {
     
     return (
         <footer>
-            <p>{process.env.REACT_APP_GITHUB_SHA || 'local'}</p>
+            <p style={{
+                fontSize: 12
+            }}>{process.env.REACT_APP_GITHUB_SHA || 'v0.0.0'}</p>
         </footer>
     )
 }
