@@ -8,21 +8,17 @@ import {
 import LazyGardeByDay from '../components/LazyGardeByDay';
 import LazySelectCity from '../components/LazySelectCity';
 import { UPDATE_GARDES_BY_DAY } from '../redux/actions/app.actions';
-
+import Footer from '../components/Footer'
 function Dash() {
 
-    const {selectedCityId} = useSelector(state=>state.app)
+    const { selectedCityId } = useSelector(state => state.app)
     const dispatch = useDispatch()
-    
-    const save=()=>{
 
-
+    const save = () => {
         dispatch(UPDATE_GARDES_BY_DAY(selectedCityId))
-
-
     }
 
-    
+
     return (
         <Container>
             <div className="dashboard">
@@ -33,9 +29,13 @@ function Dash() {
                 </div>
                 <div className="list-pharmacies">
                     <LazySelectCity />
-                    
+
                     <LazyGardeByDay />
+
+                    <Footer />
                 </div>
+
+
             </div>
         </Container>
     )
