@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import AsyncSelect from 'react-select/async';
 import { useDispatch, useSelector } from 'react-redux';
-import { CHANGE_GARDES_BY_DAY } from '../redux/actions/app.actions';
+import { ADD_GARDES_BY_DAY } from '../redux/actions/app.actions';
 
 const pharmacySchema={
     name: '',
@@ -72,7 +72,7 @@ function PharmacyInput({day}) {
         }
 
         // add the new pharmacy to the redux status
-        dispatch(CHANGE_GARDES_BY_DAY(day,pharmacy))
+        dispatch(ADD_GARDES_BY_DAY(day,pharmacy))
 
         // reset the pharmacyInput
         setPharmacy(pharmacySchema)
