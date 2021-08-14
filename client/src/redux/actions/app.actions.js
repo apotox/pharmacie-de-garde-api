@@ -100,11 +100,21 @@ export const FAILED = (dispatch) => (error) => {
     }))
 }
 
-export const CHANGE_GARDES_BY_DAY= (day,payload) => {
+export const ADD_GARDES_BY_DAY= (day,payload) => {
 
     return (dispatch,getState)=>{
         let currentData = getState().app.gardesByDay;
         currentData[day] = [...currentData[day],payload]
+        dispatch(SET_GARDES_BY_DAY(currentData))
+    }
+
+}
+
+export const DELETE_GARDES_BY_INDEX= (day,index) => {
+
+    return (dispatch,getState)=>{
+        let currentData = getState().app.gardesByDay;
+        currentData[day] = currentData[day].filter((_,i)=>i!==index)
         dispatch(SET_GARDES_BY_DAY(currentData))
     }
 
@@ -131,6 +141,11 @@ export const UPDATE_GARDES_BY_DAY= (cityId) => {
             })
             
             console.log(result)
+
+            dispatch(SHOW_NOTIFICATION_TIMEOUT({
+                message: result.data.success ? 'ok':'failed',
+                color: 'success'
+            }))
 
         }catch(error){
             dispatch(SHOW_NOTIFICATION_TIMEOUT({
