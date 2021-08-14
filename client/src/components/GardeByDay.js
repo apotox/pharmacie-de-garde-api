@@ -39,7 +39,7 @@ function GardeByDay() {
                         <div className='cards-holder'>
                             {
                                 gardesByDay[day].map((pharmacy, index) =>
-                                    <Pharmacy pharmacy={pharmacy} key={`pharmacy-${day}-${index}`} />)
+                                    <Pharmacy index={index} day={day} pharmacy={pharmacy} key={`pharmacy-${day}-${index}`} />)
                             }
                             <PharmacyInput day={day} />
                         </div>
