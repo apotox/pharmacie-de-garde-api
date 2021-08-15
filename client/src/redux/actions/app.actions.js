@@ -176,7 +176,7 @@ export const GET_GARDES_BY_DAY = (cityId) => {
             const days = result.data
             let pharmaciesGardes = []
             days.forEach((day) => {
-                console.log(day)
+                
                 pharmaciesGardes = [
                     ...pharmaciesGardes,
                     ...day
@@ -197,6 +197,8 @@ export const GET_GARDES_BY_DAY = (cityId) => {
                 color: 'danger'
             }))
         }
+
+        console.log('gardesByDay',gardesByDay)
 
         
         dispatch(SET_GARDES_BY_DAY(gardesByDay))
