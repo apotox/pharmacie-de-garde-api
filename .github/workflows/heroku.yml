@@ -32,6 +32,7 @@ jobs:
         working-directory: ./client
         env:
           CI: false
+          REACT_APP_BASE_URL: https://frozen-earth-99544.herokuapp.com/api/
         run: |
           yarn install
           yarn build --if-present
