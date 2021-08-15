@@ -12,9 +12,11 @@ function Header() {
     return (
         <header className="App-header">
        
+        <a href='/'>
         <p>
           <code>Pharmacie de</code> Garde.
         </p>
+        </a>
 
         {connected && user && <div className="connected-div">
           <span>you are connected as {user.email}</span><Button size="sm" outline onClick={out}>out</Button>
