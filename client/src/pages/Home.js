@@ -39,6 +39,19 @@ function Home() {
                     <span aria-hidden class="cybr-btn__tag">BATNA05</span>
                 </button>
             </div>
+
+
+            <div className='cybr-btn-container'>
+                <button class="cybr-btn" onClick={() => {
+                    history.push('/how-it-works')
+                }}>
+                    How it Works<span aria-hidden>_</span>
+                    <span aria-hidden class="cybr-btn__glitch">Apotox_</span>
+                    <span aria-hidden class="cybr-btn__tag">BATNA05</span>
+                </button>
+            </div>
+
+
         </div>
     )
 }
