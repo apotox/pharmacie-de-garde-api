@@ -22,11 +22,12 @@ function Dash() {
     return (
         <Container>
             <div className="dashboard">
-                <div className="side-bar-left">
+            <Button size="sm" onClick={save} color="success" outline>Save</Button>
+                {/* <div className="side-bar-left">
                     <ul>
                         <li><Button size="sm" onClick={save} color="success" outline>Save</Button></li>
                     </ul>
-                </div>
+                </div> */}
                 <div className="list-pharmacies">
                     <LazySelectCity />
 
