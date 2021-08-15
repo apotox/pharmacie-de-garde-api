@@ -29,7 +29,7 @@
   
   .cybr-btn {
     --primary: hsl(var(--primary-hue), 85%, calc(var(--primary-lightness, 50) * 1%));
-    --shadow-primary: hsl(var(--shadow-primary-hue), 90%, 50%);
+    --shadow-primary: hsl(var(--shadow-primary-hue), 40%, 50%);
     --primary-hue: 0;
     --primary-lightness: 50;
     --color: hsl(0, 0%, 100%);
