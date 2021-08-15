@@ -57,14 +57,18 @@ function PharmacyInput({day}) {
         })
     }
     const onSelect = ({ value }) => {
-        //dispatch(SET_SELECTED_CITYID(value))
+
         setExistingPharmacyKey(value.key)
-        setPharmacy(value)
+        setPharmacy({
+            ...value,
+            hourFrom: '19:00',
+            hourTo: '00:00'
+        })
 
     }
 
     const saveParmacy=()=>{
-        console.log('pharmacy',pharmacy)
+        
 
         if(existingPharmacyKey){
             pharmacy.pharmacyId = existingPharmacyKey
