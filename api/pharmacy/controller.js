@@ -5,7 +5,7 @@ const {firebaseAdmin} = require("../../helpers");
  * @param {*} id
  * @returns pharmacy
  */
-const getPharmacyById=async (id, cityId)=>{
+const getPharmacyById = async (id, cityId) => {
   const snap = await firebaseAdmin()
       .database()
       .ref(`pharmacies/${cityId}/${id}`)
@@ -22,16 +22,17 @@ const getPharmacyById=async (id, cityId)=>{
  * @param {*} item
  * @returns key
  */
-const createPharmacy=async (item)=>{
+const createPharmacy = async (item) => {
   const result = await firebaseAdmin()
       .database()
       .ref(`pharmacies/${item.cityId}`)
       .push(item);
   if (result.key) {
     console.log(`create-pharmacy: ${result.key}`);
+    return result.key;
   }
 
-  return result.key;
+  return null;
 };
 
 /**
@@ -40,7 +41,7 @@ const createPharmacy=async (item)=>{
  * @param {*} res
  * @returns [pharmacy]
  */
-const getAllCityPharmacies=async (req, res) => {
+const getAllCityPharmacies = async (req, res) => {
   const id = req.params.id; // city id
   if (!id) {
     return res.status(400).json({success: false});

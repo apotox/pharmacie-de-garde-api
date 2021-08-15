@@ -29,6 +29,7 @@ const wrapItem = (nextday, cityId) => (item) => {
         .then((pharmacy) => {
           if (pharmacy) {
             return {
+              pharmacyId: item.pharmacyId,
               name: pharmacy.name,
               date: nextday,
               hourFrom: item.hourFrom,
@@ -42,25 +43,25 @@ const wrapItem = (nextday, cityId) => (item) => {
           console.trace(error.message);
           return {};
         });
+  } else {
+    // insert the new pharmacy to database
+
+    return createPharmacy({
+      name: item.name || "unamed",
+      lat: item.lat || 1,
+      lng: item.lng || 1,
+      cityId,
+      rating: 5,
+    }).then((pharmacyId)=>({
+      pharmacyId,
+      name: item.name,
+      date: nextday,
+      hourFrom: item.hourFrom,
+      hourTo: item.hourTo,
+      location: `${item.lat},${item.lng}`,
+      rating: 5,
+    }));
   }
-
-  // insert the new pharmacy to database
-  createPharmacy({
-    name: item.name || "unamed",
-    lat: item.lat || 1,
-    lng: item.lng || 1,
-    cityId,
-    rating: 5,
-  });
-
-  return ({
-    name: item.name,
-    date: nextday,
-    hourFrom: item.hourFrom,
-    hourTo: item.hourTo,
-    location: `${item.lat},${item.lng}`,
-    rating: 5,
-  });
 };
 
 /**
