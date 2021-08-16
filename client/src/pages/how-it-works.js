@@ -11,8 +11,8 @@ function HowItWorks() {
                 <li>Backend (Nodejs)</li>
                 <li>
                     <ul>
-                        <li>Nodejs API structure</li>
                         <li>Eslint</li>
+                        <li>Nodejs API structure</li>
                         <li>Express Framework</li>
                         <li>Firebase RT Database</li>
                         <li>Firebase Authentication (token verification)</li>
@@ -21,7 +21,7 @@ function HowItWorks() {
                 <li>CI/CD</li>
                 <li>
                     <ul>
-                        <li>Eslint Test</li>
+                        <li>Eslint Check</li>
                         <li>Heroku Deployment</li>
                         <li>Github Actions</li>
                         <li>Google Play</li>
@@ -32,6 +32,7 @@ function HowItWorks() {
                 <li>
                     <ul>
                         <li>React js</li>
+                        <li>create-react-app cli</li>
                         <li>Redux</li>
                         <li>Firebase Authentication (signin)</li>
                         <li>React Router Dom</li>
@@ -61,7 +62,7 @@ function HowItWorks() {
                         </button>
                     </div>
                 </a>
-                <p>subscribe and you will get notified when the course becomes ready</p>
+                <p>subscribe and you will get notified when the course is ready</p>
             </div>
         </div>
     )
