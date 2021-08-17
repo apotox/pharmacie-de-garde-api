@@ -7,7 +7,6 @@ const style = {
         animationIterationCount: 'infinite',
         animationName: 'placeHolderShimmer',
         animationTimingFunction: 'linear',
-        background: '#f6f7f8',
         background: 'linear-gradient(to right, #fafafa 8%, #f4f4f4 38%, #fafafa 54%)',
         backgroundSize: '1000px 640px',
         position: 'relative'

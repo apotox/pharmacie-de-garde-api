@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React, { lazy, Suspense } from 'react';
 import LazyLoading from './LazyLoading';
 
