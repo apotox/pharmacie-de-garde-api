@@ -25,9 +25,13 @@
     "eslint-config-google": "^0.14.0",
     "firebase-functions-test": "^0.2.0"
   },
+  "repository": {
+    "url": "https://github.com/apotox/pharmacie-de-garde-api"
+  },
   "author": {
-    "name": "safi eddine bouhentala",
-    "email": "saphidev@gmail.com"
+    "name": "safi",
+    "email": "safi.bouhentala@protonmail.com",
+    "url": "https://twitter.com/saphidev"
   },
   "private": true
 }

@@ -2,6 +2,14 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "safi",
+    "email": "safi.bouhentala@protonmail.com",
+    "url": "https://twitter.com/saphidev"
+  },
+  "repository": {
+    "url": "https://github.com/apotox/pharmacie-de-garde-api"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
