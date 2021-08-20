@@ -1,6 +1,6 @@
-# Contributing to this repository <!-- omit in toc -->
+# Contributing to this repository
 
-## Getting started <!-- omit in toc -->
+## Getting started
 
 Before you begin:
 - This site is powered by Node.js. 
@@ -8,7 +8,7 @@ Before you begin:
 
 ### Use the 'make a contribution' button
 
-<img src="./assets/images/contribution_cta.png" width="400">
+<img src="https://github.com/github/docs/raw/90aadb9aeb0ed3ed6214e82c1f2861fbec69641a/assets/images/contribution_cta.png" width="400">
 
 Navigating a new codebase can be challenging, so we're making that a little easier. As you're using this project, you may come across an ```.js``` file that you want to make an update/fix to. You can click on the **make a contribution** button right on that file, which will take you to the file in this repo where you'll make your changes.
 
