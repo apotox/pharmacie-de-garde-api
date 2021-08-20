@@ -29,7 +29,7 @@ Frontend (dashboard)
 - Lazy and loading
 
 Application Mobile [source code](https://github.com/apotox/pharmacie-de-garde)
-- using Kotlin
+- using Kotlin (ViewModel , LiveData ...)
 - Fragments
-- Retrofit
+- Retrofit 
 - Navigation
