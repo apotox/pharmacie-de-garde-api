@@ -2,6 +2,9 @@
 
 
 - [Dashboard Demo](https://frozen-earth-99544.herokuapp.com/)
+    - Demo admin credentials:
+        - email ```demo@user.com```
+        - password ```123456789```
 - [Application Mobile](https://play.google.com/store/apps/details?id=com.saphidev.pharmaciedegarde)
 
 
